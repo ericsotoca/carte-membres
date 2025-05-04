@@ -126,5 +126,13 @@
     "pays": "singapore",
     "latitude": 1.357107,
     "longitude": 103.8194992
+  },
+  {
+    "prenom": "GERMÁN",
+    "nom": "GONZÁLEZ GIRÓN",
+    "ville": "CALI",
+    "pays": "COLOMBIA",
+    "latitude": 3.4519988,
+    "longitude": -76.5325259
   }
 ]
