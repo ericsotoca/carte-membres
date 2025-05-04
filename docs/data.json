@@ -1,6 +1,6 @@
 [
   {
-    "membres": [
+    "data": [
       {
         "prenom": "Hélène",
         "nom": "MIMENZA",
@@ -11,22 +11,22 @@
       },
       {
         "prenom": "Асель",
-        "nom": "Далиева ",
-        "ville": "Шымкент ",
-        "pays": "Казахстан ",
+        "nom": "Далиева",
+        "ville": "Шымкент",
+        "pays": "Казахстан",
         "latitude": 42.2944108,
         "longitude": 69.6380923
       },
       {
-        "prenom": "Issaka ",
-        "nom": "BOUKARI IDRISSOU ",
+        "prenom": "Issaka",
+        "nom": "BOUKARI IDRISSOU",
         "ville": "Bassila",
-        "pays": "Bénin ",
+        "pays": "Bénin",
         "latitude": 8.9666644,
         "longitude": 1.8218397
       },
       {
-        "prenom": "Laladom ",
+        "prenom": "Laladom",
         "nom": "ATANA",
         "ville": "Lomé",
         "pays": "Togo",
@@ -59,8 +59,8 @@
       },
       {
         "prenom": "Ange",
-        "nom": "N'GUESSAN ",
-        "ville": "Yamoussoukro ",
+        "nom": "N'GUESSAN",
+        "ville": "Yamoussoukro",
         "pays": "Cote d'ivoire",
         "latitude": 6.8200066,
         "longitude": -5.2776034
@@ -74,9 +74,9 @@
         "longitude": -70.907822
       },
       {
-        "prenom": "Ferreira Martins Goiz ",
+        "prenom": "Ferreira Martins Goiz",
         "nom": "CLEWVES",
-        "ville": "São Paulo ",
+        "ville": "São Paulo",
         "pays": "Brazil",
         "latitude": -23.5506507,
         "longitude": -46.6333824
@@ -137,6 +137,8 @@
         "latitude": 3.4519988,
         "longitude": -76.5325259
       }
-    ]
+    ],
+    "count": 17,
+    "last_updated": "2025-05-04T17:19:57.903Z"
   }
 ]
