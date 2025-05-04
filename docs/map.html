@@ -2,31 +2,83 @@
 <html>
 <head>
   <title>Carte des Membres</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Important pour la responsivité mobile -->
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
   <style>
-    #map { height: 500px; }
+    /* Reset les marges par défaut du navigateur */
+    html, body {
+      height: 100%; /* Permet à #map d'utiliser la hauteur en % si besoin */
+      margin: 0;
+      padding: 0;
+      overflow: hidden; /* Empêche les barres de défilement si la map dépasse légèrement */
+    }
+
+    /* Fait en sorte que la carte remplisse tout l'écran */
+    #map {
+      height: 100vh; /* 100% de la hauteur du viewport */
+      width: 100vw;  /* 100% de la largeur du viewport */
+    }
   </style>
 </head>
 <body>
   <div id="map"></div>
+
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
   <script>
-    const map = L.map('map').setView([48.85, 2.35], 5); // Centrage initial
+    // Initialisation de la carte (le centre et le zoom initiaux sont moins importants si on utilise fitBounds)
+    const map = L.map('map').setView([20, 0], 2); // Vue initiale globale
+
+    // Ajout du fond de carte OpenStreetMap
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-      attribution: '© OpenStreetMap'
+      attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors' // Attribution correcte
     }).addTo(map);
 
-    // Charger les données depuis le JSON généré par n8n
+    // Pour calculer les limites (bounds) afin de centrer/zoomer
+    const markers = [];
+    // Créer un groupe de calques pour les marqueurs (facilite la gestion)
+    const markerLayer = L.layerGroup().addTo(map);
+
+    // Charger les données depuis data.json
     fetch('data.json')
-      .then(response => response.json())
+      .then(response => {
+        if (!response.ok) {
+          throw new Error(`Erreur HTTP! statut: ${response.status}`);
+        }
+        return response.json();
+      })
       .then(data => {
         data.forEach(member => {
-          if (member.latitude && member.longitude) {
-            L.marker([member.latitude, member.longitude])
-              .addTo(map)
-              .bindPopup(`<b>${member.name}</b>`);
+          // Vérifier que latitude et longitude sont des nombres valides
+          const lat = parseFloat(member.latitude);
+          const lon = parseFloat(member.longitude);
+
+          if (!isNaN(lat) && !isNaN(lon)) {
+            const marker = L.marker([lat, lon])
+              .bindPopup(`<b>${member.prenom} ${member.nom}</b><br>${member.ville}, ${member.pays}`); // Popup amélioré
+
+            // Ajouter le marqueur au groupe de calques
+            markerLayer.addLayer(marker);
+
+            // Ajouter les coordonnées pour le calcul des limites
+            markers.push([lat, lon]);
+          } else {
+            console.warn(`Coordonnées invalides pour : ${member.prenom} ${member.nom}`);
           }
         });
+
+        // Ajuster la vue pour montrer tous les marqueurs si au moins un existe
+        if (markers.length > 0) {
+          const bounds = L.latLngBounds(markers);
+          map.fitBounds(bounds, { padding: [50, 50] }); // Ajoute un peu de marge (padding)
+        } else {
+          console.log("Aucun marqueur valide trouvé pour ajuster la vue.");
+          // Optionnel: Garder la vue initiale ou définir une vue par défaut ici
+        }
+      })
+      .catch(error => {
+        console.error('Erreur lors du chargement ou du traitement de data.json:', error);
+        // Afficher un message d'erreur à l'utilisateur sur la carte
+         document.getElementById('map').innerHTML = '<p style="padding: 20px; text-align: center; color: red;">Impossible de charger les données des membres sur la carte.</p>';
       });
   </script>
 </body>
