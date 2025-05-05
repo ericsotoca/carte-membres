@@ -134,5 +134,13 @@
     "pays": "COLOMBIA",
     "latitude": 3.4519988,
     "longitude": -76.5325259
+  },
+  {
+    "prenom": "Bénédicte",
+    "nom": "Opoix",
+    "ville": "77970 - JOUY LE CHATEL",
+    "pays": "France",
+    "latitude": 48.6632448,
+    "longitude": 3.1541169
   }
 ]
