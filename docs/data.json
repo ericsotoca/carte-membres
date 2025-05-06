@@ -32,14 +32,6 @@
     "longitude": 1.215829
   },
   {
-    "prenom": "Eric",
-    "nom": "SOTOCA",
-    "ville": "La Saulce (05110)",
-    "pays": "France",
-    "latitude": 44.4254815,
-    "longitude": 6.0074686
-  },
-  {
     "prenom": "Sara",
     "nom": "GONZALEZ MERINERO",
     "ville": "Madrid",
@@ -142,5 +134,13 @@
     "pays": "France",
     "latitude": 48.6632448,
     "longitude": 3.1541169
+  },
+  {
+    "prenom": "Eric",
+    "nom": "SOTOCA",
+    "ville": "La Saulce (05110)",
+    "pays": "France",
+    "latitude": 44.4254815,
+    "longitude": 6.0074686
   }
 ]
